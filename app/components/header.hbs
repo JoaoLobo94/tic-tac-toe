@@ -1,1 +1,14 @@
-<h1>header</h1>
+<div class="layout-row layout-align-center-start flex">
+    <div class="layout-row">
+        {{#paper-card as |card|}}
+        {{#card.title as |title|}}
+        {{#title.text as |text|}}
+        <div>
+        {{#text.headline}}score for 0 - {{/text.headline}}
+        {{#text.headline}}score for x{{/text.headline}}
+        </div>
+        {{/title.text}}
+        {{/card.title}}
+        {{/paper-card}}
+    </div>
+</div>
