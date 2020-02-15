@@ -1,14 +1,14 @@
 <div class="board {{if xTurn "x" "circle"}}" id="board" {{on "click" this.increment}}>
   
-    <div class="cell {{grid.[1]}}" onclick="{{if grid.[1] this.played}}"></div>
-    <div class="cell {{grid.[2]}}" {{on "click" this.played}}></div>
-    <div class="cell {{grid.[3]}}" {{on "click" this.played}}></div>
-    <div class="cell {{grid.[4]}}" {{on "click" this.played}}></div>
-    <div class="cell {{grid.[5]}}" {{on "click" this.played}}></div>
-    <div class="cell {{grid.[6]}}" {{on "click" this.played}}></div>
-    <div class="cell {{grid.[7]}}" {{on "click" this.played}}></div>
-    <div class="cell {{grid.[8]}}" {{on "click" this.played}}></div>
-    <div class="cell {{grid.[9]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[1]}}" {{on "click" this.played 1}}></div>
+    <div class="cell {{grid.[2]}}" {{on "click" this.played 2}}></div>
+    <div class="cell {{grid.[3]}}" {{on "click" this.played 3}}></div>
+    <div class="cell {{grid.[4]}}" {{on "click" this.played 4}}></div>
+    <div class="cell {{grid.[5]}}" {{on "click" this.played 5}}></div>
+    <div class="cell {{grid.[6]}}" {{on "click" this.played 6}}></div>
+    <div class="cell {{grid.[7]}}" {{on "click" this.played 7}}></div>
+    <div class="cell {{grid.[8]}}" {{on "click" this.played 8}}></div>
+    <div class="cell {{grid.[9]}}" {{on "click" this.played 9}}></div>
 
 </div>
 <div>Number of moves {{this.count}}</div>

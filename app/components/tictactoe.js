@@ -42,7 +42,7 @@ export default class TictactoeComponent extends Component {
 
   @action
 
-  played(focus) {
+  played(grid) {
     for (var i = 1; i < 10; i++) {
       if (this.grid[i] == null) {
         if (this.count % 2 == 0) {
