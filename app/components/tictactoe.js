@@ -47,7 +47,14 @@ export default class TictactoeComponent extends Component {
     }
   }
   @action
-  winner() {
-    tracker.winningCombo
+  winner(gridParam) {
+    this.tracker.winningCombo.some(combination =>{
+        combination.every(index =>{
+        gridParam[index].classList.contains('x')
+      })
+    })
   }
 }
+
+
+
