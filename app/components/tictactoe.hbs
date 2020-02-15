@@ -1,6 +1,6 @@
 <div class="board {{if xTurn "x" "circle"}}" id="board" {{on "click" this.increment}}>
-
-    <div class="cell {{grid.[1]}}" {{on "click" this.played}}></div>
+  
+    <div class="cell {{grid.[1]}}" onclick="{{if grid.[1] this.played}}"></div>
     <div class="cell {{grid.[2]}}" {{on "click" this.played}}></div>
     <div class="cell {{grid.[3]}}" {{on "click" this.played}}></div>
     <div class="cell {{grid.[4]}}" {{on "click" this.played}}></div>

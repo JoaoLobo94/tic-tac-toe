@@ -41,8 +41,9 @@ export default class TictactoeComponent extends Component {
   }
 
   @action
-  played() {
-    for (var i = 0; i < Object.keys(this.grid).length; i++) {
+
+  played(focus) {
+    for (var i = 1; i < 10; i++) {
       if (this.grid[i] == null) {
         if (this.count % 2 == 0) {
           set(this.grid, i, "x");
@@ -54,4 +55,6 @@ export default class TictactoeComponent extends Component {
       }
     }
   }
+  @action
+  winner(){}
 }
