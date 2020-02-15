@@ -42,18 +42,15 @@ export default class TictactoeComponent extends Component {
 
   @action
 
-  played(grid) {
-    for (var i = 1; i < 10; i++) {
-      if (this.grid[i] == null) {
+  played(gridParam) {
+      if (this.grid[gridParam] == null) {
         if (this.count % 2 == 0) {
-          set(this.grid, i, "x");
-          break;
+          set(this.grid, gridParam, "x");
         } else {
-          set(this.grid, i, "circle");
-          break;
+          set(this.grid, gridParam, "circle");
+
         }
       }
-    }
   }
   @action
   winner(){}
