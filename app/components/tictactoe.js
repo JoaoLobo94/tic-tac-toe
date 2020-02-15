@@ -14,9 +14,9 @@ export default class TictactoeComponent extends Component {
     [1, 5, 9],
     [3, 5, 7]
   ];
-  @tracked count = 0;
+  @tracked count = 9;
 
-  @tracked xTurn = true;
+  @tracked xTurn = false;
 
   @tracked grid = {
     1: null,
@@ -32,11 +32,13 @@ export default class TictactoeComponent extends Component {
 
   @action
   increment() {
-    this.count++;
-    if (this.count % 2 == 0) {
-      this.xTurn = true;
-    } else {
-      this.xTurn = false;
+    if (this.count > 0) {
+      this.count--;
+      if (this.count % 2 == 0) {
+        this.xTurn = true;
+      } else {
+        this.xTurn = false;
+      }
     }
   }
 

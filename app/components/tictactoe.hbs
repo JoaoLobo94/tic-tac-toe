@@ -1,4 +1,4 @@
-<div class="board {{if xTurn "x" "circle"}}" id="board" {{on "click" this.increment}}>
+<div class="board {{if xTurn "x" "circle"}}" {{on "click" this.increment}}>
 
     <div class="cell {{grid.[1]}}" {{on "click" (fn this.played 1)}}></div>
     <div class="cell {{grid.[2]}}" {{on "click" (fn this.played 2)}}></div>
