@@ -1,19 +1,18 @@
-
 <div class="board {{if xTurn "x" "circle"}}" id="board" {{on "click" this.increment}}>
-    <div class="cell" data-cell>{{this.xTurn}}</div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
+
+    <div class="cell {{grid.[1]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[2]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[3]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[4]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[5]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[6]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[7]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[8]}}" {{on "click" this.played}}></div>
+    <div class="cell {{grid.[9]}}" {{on "click" this.played}}></div>
+
 </div>
 <div>Number of moves {{this.count}}</div>
 <div class="winning-message" id="winningMessage">
     <div data-winning-message-text>Winrar</div>
     <button id="restartButton">Restart</button>
 </div>
-
-

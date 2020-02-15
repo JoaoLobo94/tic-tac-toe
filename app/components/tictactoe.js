@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
+import { set } from "@ember/object";
 
 export default class TictactoeComponent extends Component {
   winningCombo = [
@@ -17,6 +18,18 @@ export default class TictactoeComponent extends Component {
 
   @tracked xTurn = true;
 
+  @tracked grid = {
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null,
+    7: null,
+    8: null,
+    9: null
+  };
+
   @action
   increment() {
     this.count++;
@@ -24,6 +37,21 @@ export default class TictactoeComponent extends Component {
       this.xTurn = true;
     } else {
       this.xTurn = false;
+    }
+  }
+
+  @action
+  played() {
+    for (var i = 0; i < Object.keys(this.grid).length; i++) {
+      if (this.grid[i] == null) {
+        if (this.count % 2 == 0) {
+          set(this.grid, i, "x");
+          break;
+        } else {
+          set(this.grid, i, "circle");
+          break;
+        }
+      }
     }
   }
 }
