@@ -4,8 +4,11 @@
         {{#card.title as |title|}}
         {{#title.text as |text|}}
         <div>
-        {{#text.headline}}score for 0 - {{/text.headline}}
-        {{#text.headline}}score for x{{/text.headline}}
+            {{#text.headline}}score for 0 - {{/text.headline}}
+            {{#text.headline}}score for x{{/text.headline}}
+        </div>
+        <div class="md-padding layout-row layout-align-center-start flex">
+            {{#text.headline}}games played{{/text.headline}}
         </div>
         {{/title.text}}
         {{/card.title}}

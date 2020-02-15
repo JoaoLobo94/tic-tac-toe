@@ -1,5 +1,6 @@
-<div class="board" id="board">
-    <div class="cell" data-cell></div>
+
+<div class="board {{if xTurn "x" "circle"}}" id="board" {{on "click" this.increment}}>
+    <div class="cell" data-cell>{{this.xTurn}}</div>
     <div class="cell" data-cell></div>
     <div class="cell" data-cell></div>
     <div class="cell" data-cell></div>
@@ -9,8 +10,9 @@
     <div class="cell" data-cell></div>
     <div class="cell" data-cell></div>
 </div>
+<div>Number of moves {{this.count}}</div>
 <div class="winning-message" id="winningMessage">
-    <div data-winning-message-text>Winrar </div>
+    <div data-winning-message-text>Winrar</div>
     <button id="restartButton">Restart</button>
 </div>
 
