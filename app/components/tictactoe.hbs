@@ -10,9 +10,9 @@
     <div class="cell {{grid.[9]}}" {{on "click" (fn this.played 9)}}></div>
 </div>
 <div class="winning-message {{if xWins 'show'}} {{if oWins 'show'}}">
-    <div >Winner {{if xWins 'X won the game' 'O won the game'}}</div>
+    <div >{{if xWins 'X won the game' 'O won the game'}}</div>
     
-    <button > {{link-to "Restart" "index"}}</button>
+    <button {{on "click" this.restart}}>Restart</button>
    
 </div>
 

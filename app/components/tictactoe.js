@@ -82,11 +82,24 @@ export default class TictactoeComponent extends Component {
   winner() {
     if (this.isWinner('x')) {
       this.xWins = true
+      this.tracker.xVictory ++ 
     } else if (this.isWinner('circle')){
       this.oWins = true
+      this.tracker.oVictory ++ 
     }
     else {
       return "draw"
     }
+  }
+  @action
+  restart(){
+    this.tracker.count = 9
+    for (let i = 0; i < this.grid.length; i++){
+      set(this.grid, i, null)
+    }
+    this.xWins = false
+    this.oWins = false
+    
+
   }
 }
