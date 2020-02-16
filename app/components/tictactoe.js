@@ -37,7 +37,7 @@ export default class TictactoeComponent extends Component {
 
   @action
   increment() {
-    if (this.tracker.count > 0) {
+    if (this.tracker.count > 0 ) {
       this.tracker.count--;
       if (this.tracker.count % 2 == 0) {
         this.xTurn = true;
@@ -75,18 +75,15 @@ export default class TictactoeComponent extends Component {
       else if (Object.values(this.grid).includes(null)==false) {
         return "Draw"
       }
-      else{
-        return false
-      }
     }
   }
 
   @action
   winner() {
     if (this.isWinner('x')) {
-      this.xWins == true
+      this.xWins = true
     } else if (this.isWinner('circle')){
-      this.oWins == true
+      this.oWins = true
     }
     else {
       return "draw"
