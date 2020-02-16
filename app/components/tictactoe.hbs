@@ -1,5 +1,5 @@
 <div class="board {{if xTurn "x" "circle"}}" {{on "click" this.increment}} {{on "click" this.winner}}>
-    <div class="cell {{grid.[1]}}" {{on "click" (fn this.played 1)}}>{{this.xWins}}</div>
+    <div class="cell {{grid.[1]}}" {{on "click" (fn this.played 1)}}></div>
     <div class="cell {{grid.[2]}}" {{on "click" (fn this.played 2)}}></div>
     <div class="cell {{grid.[3]}}" {{on "click" (fn this.played 3)}}></div>
     <div class="cell {{grid.[4]}}" {{on "click" (fn this.played 4)}}></div>
@@ -11,6 +11,8 @@
 </div>
 <div class="winning-message {{if xWins 'show'}} {{if oWins 'show'}}">
     <div >Winner {{if xWins 'X won the game' 'O won the game'}}</div>
-    <button >Restart</button>
+    
+    <button > {{link-to "Restart" "index"}}</button>
+   
 </div>
 
