@@ -2,8 +2,16 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { set } from "@ember/object";
+import { getOwner } from "@ember/application";
 
 export default class TictactoeComponent extends Component {
+  get tracker() {
+    return getOwner(this).lookup("service:tracker");
+  }
+  @tracked xTurn = false;
+  @tracked xWins = false
+  @tracked oWins = false
+
   winningCombo = [
     [1, 4, 7],
     [2, 5, 8],
@@ -14,9 +22,6 @@ export default class TictactoeComponent extends Component {
     [1, 5, 9],
     [3, 5, 7]
   ];
-  @tracked count = 0;
-
-  @tracked xTurn = true;
 
   @tracked grid = {
     1: null,
@@ -32,24 +37,56 @@ export default class TictactoeComponent extends Component {
 
   @action
   increment() {
-    this.count++;
-    if (this.count % 2 == 0) {
-      this.xTurn = true;
-    } else {
-      this.xTurn = false;
+    if (this.tracker.count > 0 ) {
+      this.tracker.count--;
+      if (this.tracker.count % 2 == 0) {
+        this.xTurn = true;
+      } else {
+        this.xTurn = false;
+      }
     }
   }
 
   @action
   played(gridParam) {
     if (this.grid[gridParam] == null) {
-      if (this.count % 2 == 0) {
-        set(this.grid, gridParam, "x");
+      if (this.tracker.count % 2 == 0) {
+        set(this.grid, gridParam, 'x');
       } else {
-        set(this.grid, gridParam, "circle");
+        set(this.grid, gridParam, 'circle');
       }
     }
   }
   @action
-  winner() {}
+  winnerArr(Piece) {
+    return Object.keys(this.grid).filter(key => {
+     return this.grid[key] === Piece
+    }).map(Number)
+  }
+
+
+  @action
+  isWinner(gamePiece){
+    for (let i = 0; i < this.winningCombo.length; i++) {
+     let victory = this.winningCombo[i].every(r=>this.winnerArr(gamePiece).indexOf(r) >= 0)      
+      if (victory == true) {
+        return true
+      }
+      else if (Object.values(this.grid).includes(null)==false) {
+        return "Draw"
+      }
+    }
+  }
+
+  @action
+  winner() {
+    if (this.isWinner('x')) {
+      this.xWins = true
+    } else if (this.isWinner('circle')){
+      this.oWins = true
+    }
+    else {
+      return "draw"
+    }
+  }
 }
