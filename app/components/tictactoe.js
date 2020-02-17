@@ -38,6 +38,7 @@ export default class TictactoeComponent extends Component {
   };
 
 
+
   @action
   increment() {
     if (this.tracker.count > 0) {
