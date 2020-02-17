@@ -4,12 +4,9 @@
         {{#card.title as |title|}}
         {{#title.text as |text|}}
         <div>
-            {{#text.headline}}X -    {{this.tracker.xVictory}} ||  {{/text.headline}}
-            {{#text.headline}}{{this.tracker.oVictory}} - O {{/text.headline}}
+            {{#text.headline}}X - {{this.tracker.xVictory}} || {{/text.headline}}
+            {{#text.headline}}O - {{this.tracker.oVictory}} {{/text.headline}}
             {{#text.headline}} || Draws - {{this.tracker.draws}}{{/text.headline}}
-        </div>
-        <div class="md-padding layout-row layout-align-center-start flex">
-            {{#text.headline}}Number of moves left {{this.tracker.count}}{{/text.headline}}
         </div>
         {{/title.text}}
         {{/card.title}}
