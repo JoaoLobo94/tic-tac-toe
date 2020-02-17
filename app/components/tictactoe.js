@@ -37,30 +37,25 @@ export default class TictactoeComponent extends Component {
     9: null
   };
 
-
-
   @action
-  increment() {
-    if (this.tracker.count > 0) {
-      this.tracker.count--;
-      if (this.tracker.count % 2 == 0) {
-        this.xTurn = false;
-      } else {
-        this.xTurn = true;
-      }
-    }
+  whichTurn(){
+   let blankSpace = Object.values(this.grid).filter(nullValue=>{return nullValue != null;}).length
+   if (blankSpace % 2 == 0) {
+     return 'x'
+   } else{
+     return 'circle'
+   }
   }
 
   @action
   played(gridParam) {
     if (this.grid[gridParam] == null) {
-      if (this.tracker.count % 2 == 0) {
-        set(this.grid, gridParam, "x");
+      if (this.whichTurn()=='x') {
+        set(this.grid, gridParam, 'x');
       } else {
-        set(this.grid, gridParam, "circle");
+        set(this.grid, gridParam, 'circle');
       }
-    }
-  }
+  }}
   @action
   winnerArr(Piece) {
     return Object.keys(this.grid)
