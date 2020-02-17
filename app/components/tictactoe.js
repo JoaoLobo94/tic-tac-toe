@@ -100,9 +100,16 @@ export default class TictactoeComponent extends Component {
     this.xWins = false;
     this.oWins = false;
     this.draws = false;
-   // for (let index = 0; index < this.grid.length; index++) {
-     // set(this.grid, this.grid[i], null)
-    //  
-   // }
+    this.grid = {
+      1: null,
+      2: null,
+      3: null,
+      4: null,
+      5: null,
+      6: null,
+      7: null,
+      8: null,
+      9: null
+    };
   }
 }
