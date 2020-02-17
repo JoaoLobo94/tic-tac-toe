@@ -8,7 +8,6 @@ export default class TictactoeComponent extends Component {
   get tracker() {
     return getOwner(this).lookup("service:tracker");
   }
-  @tracked xTurn = true;
   @tracked xWins = false;
   @tracked oWins = false;
   @tracked isDraw = false;
@@ -68,34 +67,30 @@ export default class TictactoeComponent extends Component {
   @action
   isWinner(gamePiece) {
     for (let i = 0; i < this.winningCombo.length; i++) {
-      let victory = this.winningCombo[i].every(
+       let victory = this.winningCombo[i].every(
         r => this.winnerArr(gamePiece).indexOf(r) >= 0
       );
-      if (victory == true) {
+      if (victory) {
         return true;
-      } else if (Object.values(this.grid).includes(null) == false) {
-        return "Draw";
       }
     }
   }
 
   @action
   winner() {
-    if (this.isWinner() == "Draw") {
-      this.isDraw = true;
-      this.tracker.draws++;
-    } else if (this.isWinner("x")) {
+      if (this.isWinner("x")) {
       this.xWins = true;
       this.tracker.xVictory++;
     } else if (this.isWinner("circle")) {
       this.oWins = true;
       this.tracker.oVictory++;
+    }else if (Object.values(this.grid).includes(null) == false) {
+      this.isDraw = true;
+      this.tracker.draws++;
     }
   }
   @action
   restart() {
-    this.tracker.count = 9;
-    this.xTurn = true;
     this.xWins = false;
     this.oWins = false;
     this.isDraw = false;
