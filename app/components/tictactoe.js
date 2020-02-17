@@ -9,8 +9,10 @@ export default class TictactoeComponent extends Component {
     return getOwner(this).lookup("service:tracker");
   }
   @tracked xTurn = false;
-  @tracked xWins = false
-  @tracked oWins = false
+  @tracked xWins = false;
+  @tracked oWins = false;
+  @tracked isDraw = false;
+
 
   winningCombo = [
     [1, 4, 7],
@@ -80,26 +82,27 @@ export default class TictactoeComponent extends Component {
 
   @action
   winner() {
-    if (this.isWinner('x')) {
-      this.xWins = true
-      this.tracker.xVictory ++ 
-    } else if (this.isWinner('circle')){
-      this.oWins = true
-      this.tracker.oVictory ++ 
+    if (this.isWinner() == "Draw") {
+      this.isDraw = true;
+      this.tracker.draws++;
     }
-    else {
-      return "draw"
-    }
+    else if (this.isWinner("x")) {
+      this.xWins = true;
+      this.tracker.xVictory++;
+    } else if (this.isWinner("circle")) {
+      this.oWins = true;
+      this.tracker.oVictory++;
+    } 
   }
   @action
-  restart(){
-    this.tracker.count = 9
-    for (let i = 0; i < this.grid.length; i++){
-      set(this.grid, i, null)
-    }
-    this.xWins = false
-    this.oWins = false
-    
-
+  restart() {
+    this.tracker.count = 9;
+    this.xWins = false;
+    this.oWins = false;
+    this.draws = false;
+   // for (let index = 0; index < this.grid.length; index++) {
+     // set(this.grid, this.grid[i], null)
+    //  
+   // }
   }
 }
