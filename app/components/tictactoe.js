@@ -101,6 +101,7 @@ export default class TictactoeComponent extends Component {
     this.xWins = false;
     this.oWins = false;
     this.isDraw = false;
+    this.gameVariable = 'x'
     this.grid = {
       1: null,
       2: null,
