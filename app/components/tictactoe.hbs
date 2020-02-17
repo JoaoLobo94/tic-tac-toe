@@ -1,4 +1,4 @@
-<div class="board" {{on "click" this.winner}} {{on "click" this.whichTurn}}>
+<div class="board {{this.gameVariable}}" {{on "click" this.winner}} {{on "click" this.whichTurn}}>
     <div class="cell {{grid.[1]}}"  {{on "click" (fn this.played 1)}}></div>
     <div class="cell {{grid.[2]}}"  {{on "click" (fn this.played 2)}}></div>
     <div class="cell {{grid.[3]}}"  {{on "click" (fn this.played 3)}}></div>
@@ -11,11 +11,11 @@
 </div>
 <div class="winning-message {{if xWins 'show'}} {{if oWins 'show'}} {{if isDraw 'show'}}" i>
     <div>{{#if isDraw }}
-        It's a draw
+        It's a Draw!
         {{else if xWins }}
-        X won the game
+        X won the game!
         {{else if oWins}}
-        O won the game
+        O won the game!
         {{/if}}
     </div>
     <button {{on "click" this.restart}}>Restart</button>

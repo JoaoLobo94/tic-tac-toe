@@ -11,7 +11,7 @@ export default class TictactoeComponent extends Component {
   @tracked xWins = false;
   @tracked oWins = false;
   @tracked isDraw = false;
-
+  @tracked gameVariable = 'x'
 
   winningCombo = [
     [1, 4, 7],
@@ -37,24 +37,29 @@ export default class TictactoeComponent extends Component {
   };
 
   @action
-  whichTurn(){
-   let blankSpace = Object.values(this.grid).filter(nullValue=>{return nullValue != null;}).length
-   if (blankSpace % 2 == 0) {
-     return 'x'
-   } else{
-     return 'circle'
-   }
+  whichTurn() {
+    let blankSpace = Object.values(this.grid).filter(nullValue => {
+      return nullValue != null;
+    }).length;
+    if (blankSpace % 2 == 0) {
+      this.gameVariable = 'x'
+    } else {
+      this.gameVariable = 'circle'
+    }
   }
 
   @action
   played(gridParam) {
     if (this.grid[gridParam] == null) {
-      if (this.whichTurn()=='x') {
-        set(this.grid, gridParam, 'x');
+      if (this.gameVariable == "x") {
+        set(this.grid, gridParam, "x");
       } else {
-        set(this.grid, gridParam, 'circle');
+        set(this.grid, gridParam, "circle");
       }
-  }}
+    }
+  }
+
+
   @action
   winnerArr(Piece) {
     return Object.keys(this.grid)
@@ -67,7 +72,7 @@ export default class TictactoeComponent extends Component {
   @action
   isWinner(gamePiece) {
     for (let i = 0; i < this.winningCombo.length; i++) {
-       let victory = this.winningCombo[i].every(
+      let victory = this.winningCombo[i].every(
         r => this.winnerArr(gamePiece).indexOf(r) >= 0
       );
       if (victory) {
@@ -78,17 +83,19 @@ export default class TictactoeComponent extends Component {
 
   @action
   winner() {
-      if (this.isWinner("x")) {
+    if (this.isWinner("x")) {
       this.xWins = true;
       this.tracker.xVictory++;
     } else if (this.isWinner("circle")) {
       this.oWins = true;
       this.tracker.oVictory++;
-    }else if (Object.values(this.grid).includes(null) == false) {
+    } else if (Object.values(this.grid).includes(null) == false) {
       this.isDraw = true;
       this.tracker.draws++;
     }
   }
+
+
   @action
   restart() {
     this.xWins = false;
