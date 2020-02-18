@@ -2,8 +2,27 @@ import Component from "@glimmer/component";
 import { action } from "@ember/object";
 import { set } from "@ember/object";
 import { getOwner } from "@ember/application";
+import { tracked } from "@glimmer/tracking";
 
 export default class TictactoeComponent extends Component {
+  get tracker() {
+    return getOwner(this).lookup("service:tracker");
+  }
+  @tracked xWins = false;
+  @tracked oWins = false;
+  @tracked isDraw = false;
+  @tracked gameVariable = "x";
+  @tracked grid = {
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null,
+    7: null,
+    8: null,
+    9: null
+  };
   winningCombo = [
     [1, 4, 7],
     [2, 5, 8],
@@ -14,39 +33,34 @@ export default class TictactoeComponent extends Component {
     [1, 5, 9],
     [3, 5, 7]
   ];
-  get tracker() {
-    return getOwner(this).lookup("service:tracker");
-  }
-
   @action
   whichTurn() {
-    let blankSpace = Object.values(this.tracker.grid).filter(nullValue => {
+    let blankSpace = Object.values(this.grid).filter(nullValue => {
       return nullValue != null;
     }).length;
     if (blankSpace % 2 == 0) {
-      this.tracker.gameVariable = 'x'
+      this.gameVariable = "x";
     } else {
-      this.tracker.gameVariable = 'circle'
+      this.gameVariable = "circle";
     }
   }
 
   @action
-  played(gridParam) {
-    if (this.tracker.grid[gridParam] == null) {
-      if (this.tracker.gameVariable == "x") {
-        set(this.tracker.grid, gridParam, "x");
+  played(gridPosition) {
+    if (this.grid[gridPosition] == null) {
+      if (this.gameVariable == "x") {
+        set(this.grid, gridPosition, "x");
       } else {
-        set(this.tracker.grid, gridParam, "circle");
+        set(this.grid, gridPosition, "circle");
       }
     }
   }
 
-
   @action
-  winnerArr(Piece) {
-    return Object.keys(this.tracker.grid)
+  winnerArr(gamePiece) {
+    return Object.keys(this.grid)
       .filter(key => {
-        return this.tracker.grid[key] === Piece;
+        return this.grid[key] === gamePiece;
       })
       .map(Number);
   }
@@ -66,24 +80,24 @@ export default class TictactoeComponent extends Component {
   @action
   winner() {
     if (this.isWinner("x")) {
-      this.tracker.xWins = true;
+      this.xWins = true;
       this.tracker.xVictory++;
     } else if (this.isWinner("circle")) {
-      this.tracker.oWins = true;
+      this.oWins = true;
       this.tracker.oVictory++;
-    } else if (Object.values(this.tracker.grid).includes(null) == false) {
-      this.tracker.isDraw = true;
+    } else if (Object.values(this.grid).includes(null) == false) {
+      this.isDraw = true;
       this.tracker.draws++;
     }
   }
 
   @action
   restart() {
-    this.tracker.xWins = false;
-    this.tracker.oWins = false;
-    this.tracker.isDraw = false;
-    this.tracker.gameVariable = 'x'
-    this.tracker.grid = {
+    this.xWins = false;
+    this.oWins = false;
+    this.isDraw = false;
+    this.gameVariable = "x";
+    this.grid = {
       1: null,
       2: null,
       3: null,
